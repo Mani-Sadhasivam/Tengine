@@ -68,7 +68,7 @@ exec_handle_t CPUEngine::AddGraphExecutor(GraphExecutor * graph_executor)
 	if(!initialized_)
 	{
 		SocInfo soc_info;
-                std::string soc_name="RK3399";
+                std::string soc_name="HIKEY960";
 
 		if(!GetPredefinedSoc(soc_name,soc_info))
 		{

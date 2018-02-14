@@ -435,6 +435,7 @@ bool CPURunner::BindNodeOps(Subgraph * sub_graph)
 void  RegisterDefaultSoc(void)
 {
 	SocInfo soc_info;
+	SocInfo hikey960_soc_info;
 
 
 	soc_info.cpu_number=6;
@@ -469,6 +470,37 @@ void  RegisterDefaultSoc(void)
 
 	RegisterPredefinedSoc(soc_info.soc_name,soc_info);
 
+	hikey960_soc_info.cpu_number=8;
+	hikey960_soc_info.soc_name="HIKEY960";
+	hikey960_soc_info.master_cpu=4;
+
+	CPUInfo hikey960_cpu_info;
+
+	for(int i=0;i<4;i++)
+	{
+		hikey960_cpu_info.cpu_id=i;
+		hikey960_cpu_info.cpu_type="A53";
+		hikey960_cpu_info.cpu_arch="arm64";
+		hikey960_cpu_info.l1_size=32*1024;
+		hikey960_cpu_info.l2_slice=256*1024;
+
+		hikey960_soc_info.cpu_info.push_back(hikey960_cpu_info);
+		hikey960_soc_info.cpu_list.push_back(i);
+	}
+
+	for(int i=4;i<8;i++)
+	{
+		hikey960_cpu_info.cpu_id=i;
+		hikey960_cpu_info.cpu_type="A73";
+		hikey960_cpu_info.cpu_arch="arm64";
+		hikey960_cpu_info.l1_size=32*1024;
+		hikey960_cpu_info.l2_slice=512*1024;
+
+		hikey960_soc_info.cpu_info.push_back(hikey960_cpu_info);
+		hikey960_soc_info.cpu_list.push_back(i);
+	}
+
+	RegisterPredefinedSoc(hikey960_soc_info.soc_name,hikey960_soc_info);
 }
 
 
